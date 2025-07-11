@@ -1,0 +1,31 @@
+The most important thing is readibility 
+
+DOM Manipulation (Document Object Model)
+Events 
+
+
+
+Document Object Model division 
+
+Window 
+  Document
+    HTML 
+     Head 
+      title
+       text node
+       attribute
+      meta
+       attribute
+     Body 
+      div
+       attribute
+       h1
+        attribute
+        text node
+       para
+        text node
+
+
+
+        document.getElementById('firstHeading').innerHTML = "<h1> Azhar Alvi</h1>"  // Updating the value of first header in wikipedia
+        
