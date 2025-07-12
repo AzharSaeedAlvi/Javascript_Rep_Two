@@ -5,11 +5,212 @@
    
     <title>Document</title>
 
+    <style>
+        .bg-black{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+
 </head>
-<body>
-    <div class ="bg-black">
-        <h1 class ="heading">DOM learning day 1</h1>
+<body  class ="bg-black">
+    
+    <div>
+        <h1 id= "title" class ="heading">DOM learning day 1 <span style="display:none;"> Test Text</span>
+        </h1>
+<h2> Second Header</h2>
+<h2> Third Header</h3>
+<h2>Fourth Header</h2>
     <p>Lorem ipsum dolor sit amet.</p>
-    </div>
+<input type="password" name="" id="">   
+
+ <ul>
+    <li class="list-item">one</li>
+    <li class="list-item">two</li>
+    <li class="list-item">three</li>
+    <li class="list-item">four</li>
+    
+ </ul>
+
+</div>
 </body>
 </html>
+
+
+<!-- Method 1 -> getElementById() 
+ document.getElementById('title').className
+ document.getElementById('title').getAttribute('class')
+ document.getElementById('title').setAttribute('class', 'test heading')   // setAttribute will always override the old value
+ title.style.backgroundColor ='blue'
+ title.style.padding='20px'
+title.style.borderRadius='20px'
+
+title.innerText  // It will not show the text whose style "display = none; "
+title.textContent // It will show the content whose display is set to none 
+title.innerHTML // It will show all the code including the style 
+
+Example: 
+
+title.innerText
+'DOM learning day 1'
+title.textContent
+'DOM learning day 1  Test Text\n        '
+title.innerHTML
+'DOM learning day 1 <span style="display:none;"> Test Text</span>\n        '
+
+
+
+--> 
+
+
+<!--         QUERY SELECTORS                                 -->
+
+ <!-- NOTE - querySelector gives the first item. 
+
+ document.querySelector('h2')
+<h2>​ Second Header​</h2>​
+document.querySelector('#title')     // FOR ID 
+<h1 id=​"title" class=​"heading">​…​</h1>​
+    document.querySelector('.heading')  // FOR CLASS
+<h1 id=​"title" class=​"heading">​…​</h1>​
+document.querySelector('input[type='password']')
+VM2216:1 Uncaught SyntaxError: missing ) after argument list  // Since we had not initally setup a input attribute 'password'
+once that is setup we get: 
+
+document.querySelector('input[type="password"]')
+<input type=​"password" name id>​  // output
+document.querySelector('p:first-chidl'  // Correct 
+document.querySelector('p: first-child')  // Will throw an error | Reason - Extra space infront of p: | 
+ 
+document.querySelector('input [type="password"]')  will return null | Reason - Extra space infront of input 
+The space between input and [type="password"] makes it look for a [type="password"] element inside an input element, which is invalid — because <input> elements can't contain children.
+
+
+USE CASE 
+
+1. Unordered list 
+
+document.querySelector('ul')
+const myul = document.querySelector('li')
+
+const turnGreen = myul.querySelector('li')    // here we use myul instead of document 
+turnGreen.style.backgroundColor('green')
+turnGreen.style.padding('15px')
+
+
+turnGreen.style.backgroundColor = "blue"
+
+tunGreen -> Js variable that should reference to a DOM element 
+style -> inline style of the element 
+backgroundColor -> CSS-background color property hence it will not be followed by parenthesis but with = ""
+
+
+Updating the value of the innerText 
+turnGreen.innerText
+'one'
+turnGreen.innerText ="five"
+'five'
+
+
+ -->
+
+
+
+ <!--          QUERYSELECTORALL                        -->
+
+ <!--
+ 
+ NodeList and HTMLcollection are not pure arrays. The easiset way to check this is to look at the properties especially prototype 
+ You will observe that you will not see map inside this/ 
+
+ 
+ const tempLiList = document.querySelectorAll('li')   // assgining nodeList to tempLiList 
+undefined
+    tempLiList.style.backgroundColor ="green" 
+VM4350:1 Uncaught TypeError: Cannot set properties of undefined (setting 'backgroundColor')
+    at <anonymous>:1:38
+(anonymous) @ VM4350:1
+    tempLiList[0].style.backgroundColor ="green"   // NOTE - even if there was a single element inside the NodeList still we would use 
+    the same format, reason being the data type returned when querySelector is used and querySelectorAll is used is  funcdamentally different.
+'green'
+ // This implies that querySelectorAll uses the concept of forEach
+ 
+ -->
+
+
+ <!-- USING FOR EACH WITH QUERY SELECTOR -->
+
+ <!--
+ 
+ 
+ USING ARROW FUNCTION
+ 
+ tempList.forEach( l => {
+    l.style.backgroundColor = "white";
+    l.style.color = "orange"
+})
+
+How to read this : 
+
+Js vairable, . ,forEach function, parenthesis open, element, shorthand arrow function, open scope, 
+element, dot, inline style, css style backgroundColor, equals to , doublequotes open, color , doubleqoutes close, scope close, 
+parenthesis close.
+ 
+
+Element refers to -> | parameter in the arrow function 
+
+|| 
+Parameter: 
+During Function definition | Example -> function greet(name) {}    | Name is the Parameter
+
+Argument:
+During function call       | Example -> greet('Azhar')             | 'Azhar' is the argument
+
+ 
+WITHOUT USING ARROW FUNCTION 
+
+tempList.forEach(function (element) { 
+element.style.backgroundColor = "white"
+})
+
+
+In order to use map with nodeList, you will first have to convert it into an array and then use maps, since nodeList isn't a pure
+array, hence we recommend that you use forEach function when working with nodeList.
+
+    -->
+
+
+
+    <!-- getElementByClass  || HTML COLLECTION || Conversion of HTMLCOLLECTION TO ARRAY    -->
+
+    <!--
+    
+    The return type we get here is HTMLCOLLECTION which is different from nodeList 
+
+    HTML COLLECTION IS NOT AN ARRAY, so forEach wouldn't work, this can be confirmed by looking into its properties. 
+
+    So, in order to use forEach and other functions we will have to convert HTMLCOLLECTION TO ARRAY using 
+
+    Array.from(tempClassList)
+
+
+    const TempClassList= document.getElementsByClassName('list-item')
+    undefined
+    TempClassList
+    HTMLCollection(4) [li.list-item, li.list-item, li.list-item, li.list-item]
+    Array.from(TempClassList)
+    (4) [li.list-item, li.list-item, li.list-item, li.list-item]0: li.list-item1: li.list-item2: li.list-item3: li.list-itemlength: 4[[Prototype]]: Array(0)at: ƒ at()concat: ƒ concat()constructor: ƒ Array()copyWithin: ƒ copyWithin()entries: ƒ entries()every: ƒ every()fill: ƒ fill()filter: ƒ filter()find: ƒ find()findIndex: ƒ findIndex()findLast: ƒ findLast()findLastIndex: ƒ findLastIndex()flat: ƒ flat()flatMap: ƒ flatMap()forEach: ƒ forEach()includes: ƒ includes()indexOf: ƒ indexOf()join: ƒ join()keys: ƒ keys()lastIndexOf: ƒ lastIndexOf()length: 0map: ƒ map()pop: ƒ pop()push: ƒ push()reduce: ƒ reduce()reduceRight: ƒ reduceRight()reverse: ƒ reverse()shift: ƒ shift()slice: ƒ slice()some: ƒ some()sort: ƒ sort()splice: ƒ splice()toLocaleString: ƒ toLocaleString()toReversed: ƒ toReversed()toSorted: ƒ toSorted()toSpliced: ƒ toSpliced()toString: ƒ toString()unshift: ƒ unshift()values: ƒ values()with: ƒ with()Symbol(Symbol.iterator): ƒ values()Symbol(Symbol.unscopables): {at: true, copyWithin: true, entries: true, fill: true, find: true, …}[[Prototype]]: Object
+    myConvertedArray = Array.from(TempClassList)
+    (4) [li.list-item, li.list-item, li.list-item, li.list-item]
+    myConvertedArray.forEach(function (li){
+        li.style.color = 'orange" 
+    })
+    VM6454:2 Uncaught SyntaxError: Invalid or unexpected token
+    myConvertedArray.forEach(function (li){
+        li.style.color = 'orange'
+    })
+    undefined
+    
+    -->
+
+
