@@ -5,7 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fourth HTML File</title>
 </head>
-<body>
+<body style="background-color: #212121 ; color: #fff;">
     
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+<!--  Creating a function to add language to the list of elements -->
+
+
 </body>
+
+<script>
+    function addLanguage(langName){
+    const li = document.createElement('li');
+li.innerHTML = `${langName}`
+document.querySelector('.language').appendChild(li)    
+}
+addLanguage("python")
+
+// Creating a function to add language without traversing all the nodes. [Always prefer using appendChild over innerHTML]
+function addOptiLanguag(langName){
+    const li = document.createElement('li');
+    li.appendChild(document.createTextNode(langName))
+    document.querySelector('.language').appendChild(li)
+}
+addOptiLanguag('golang')
+
+
+//  Editing values 
+
+const secondLang = document.querySelector("li:nth-child(2)")
+// secondLang.innerHTML = "Mojo" 
+const newli = document.createElement('li')
+newli.textContent = "Mojo"  
+secondLang.replaceWith(newli)
+
+//edit
+const firstLang = document.querySelector("li:first-child")
+firstLang.outerHTML =  "<li> Typescript <li>"
+
+
+//    remove 
+
+const lastLang = document.querySelector('li: last-child')
+lastLang.remove()
+
+</script>
 </html>
