@@ -63,7 +63,7 @@ function displayGuess(guess) {
   userInput.value = ''; // the value stored is made empty, so that we can store the next value in this
   guessSlot.innerHTML += `${guess}| `; // Adds the guessed value captured, in text format in front of the previous guesses option
   numGuess++;
-  remaining.innerHTML = `${10 - numGuess}`; // Display the number of remaining options
+  remaining.innerHTML = `${12 - numGuess}`; // Display the number of remaining options
 }
 
 function displayMessage(message) {
@@ -88,7 +88,7 @@ function newGame() {
     prevGuess = []; // Empties the old values stored in previous game.
     numGuess = 0; // Resets the values stored in the previous game.
     guessSlot.innerHTML = ''; // Removes the guesses for the previous game.
-    remaining.innerHTML = `${11 - numGuess}`; // Resets the number of guesses to 10.
+    remaining.innerHTML = `${12 - numGuess}`; // Resets the number of guesses to 10.
     userInput.removeAttribute('disabled'); // Re-enables the userInput attribute we disabled using .classList line.
     startOver.removeChild(p); // Removes the extra message that shows at the bottom.
 
