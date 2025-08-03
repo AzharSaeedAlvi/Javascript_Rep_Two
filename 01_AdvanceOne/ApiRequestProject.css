@@ -1,0 +1,78 @@
+
+/* Style the GitHub username label */
+label {
+  font-size: 18px;
+  font-weight: 600; /* Slightly bold */
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+
+/* INPUT BUTTON CSS */
+/* Apply basic layout styling */
+
+body {
+  background-color: #212121;
+  color: aliceblue;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Input and button styling */
+input, button {
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+input {
+  width: 250px;
+}
+
+button {
+  background-color: #d3d3d3; /* Light grey */
+  color: #212121; /* Dark text for contrast */
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  /* Glow effect */
+  box-shadow: 0 0 10px rgba(200, 200, 200, 0.6);
+}
+
+button:hover {
+  background-color: #e0e0e0; /* Slightly lighter on hover */
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+
+
+/* Profile card styling */
+.card {
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  padding: 20px;
+  width: 350px;
+  margin-top: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Avatar image styling */
+#imagee img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
