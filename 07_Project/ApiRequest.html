@@ -2,51 +2,58 @@
 <!-- XMLHttpRequest: readStateProperty -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ApiRequest V8 Enginer</title>
 </head>
+
 <body style="background-color: #212121; color: aliceblue">
-
-<ul>0	UNSENT	Client has been created. open() not called yet.</ul>
-<ul>1	OPENED	open() has been called.</ul>
-<ul>2	HEADERS_RECEIVED	send() has been called, and headers and status are available.</ul>
-<ul>3	LOADING	Downloading; responseText holds partial data.</ul>
-<ul>4	DONE	The operation is complete.</ul>
-
+    <ul>
+        0 UNSENT Client has been created. open() not called yet.
+    </ul>
+    <ul>
+        1 OPENED open() has been called.
+    </ul>
+    <ul>
+        2 HEADERS_RECEIVED send() has been called, and headers and status are
+        available.
+    </ul>
+    <ul>
+        3 LOADING Downloading; responseText holds partial data.
+    </ul>
+    <ul>
+        4 DONE The operation is complete.
+    </ul>
 </body>
 
 <script>
-// Creating an object 
-const requestUrl = 'https://api.github.com/users/azharsaeedalvi';
-const xhr = new XMLHttpRequest()
-xhr.open('GET', requestUrl);
-xhr.onreadystatechange = function(){    // As soon as there is state change, the function is executing
-console.log(xhr.readyState);
-if(xhr.readyState === 4){
-    console.log(this.responseText);   // this. will be covered in prototype section. Here we obtain the api response text.
-// Now to obtain specific value from the API retived:
-const data = this.responseText;
+    // Creating an object
+    const requestUrl = "https://api.github.com/users/azharsaeedalvi";
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", requestUrl);
+    xhr.onreadystatechange = function () {
+        // As soon as there is state change, the function is executing
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            console.log(this.responseText); // this. will be covered in prototype section. Here we obtain the api response text.
+            // Now to obtain specific value from the API retived:
+            const data = this.responseText;
 
-// console.log(date.follower); // This will give an error because, the response that we get from this.responseText; is of the datatype this. 
-// Lets convert response text to JSON which will convert the datatype from string to object.
+            // console.log(date.follower); // This will give an error because, the response that we get from this.responseText; is of the datatype this.
+            // Lets convert response text to JSON which will convert the datatype from string to object.
 
-const data2 = JSON.parse(this.responseText);
-console.log(typeof data2);
-console.log(data2.followers);
+            const data2 = JSON.parse(this.responseText);
+            console.log(typeof data2);
+            console.log(data2.followers);
+        }
+    }; // These are subscriber models
 
-}
-}             // These are subscriber models 
-
-xhr.send()   // When we use this then the API request is actually sent. 
-
-
+    xhr.send(); // When we use this then the API request is actually sent.
 </script>
 
 </html>
-
-
 
 <!-- // Take out the photo, followers and create a card. 
 As soon as we click on a the button it will provide the above information in form of a card. -->

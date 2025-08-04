@@ -4,92 +4,75 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub card</title>
-    <link rel="stylesheet" href="ApiRequestProject.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="ApiRequestProject.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 
+<body style="background-color: #212121; color: aliceblue">
+    <label for="username"> Enter your GitHub username</label>
 
-<body style="background-color: #212121; color: aliceblue;">
-  
-<label for="username">  Enter your GitHub username</label>
+    <input id="username" type="text" placeholder="Username" />
 
-<input id = "username" type="text" placeholder="Username" > 
+    <button id="Enter">Enter</button>
 
-<button id ="Enter"> Enter </button>
-    
-<div class="card">
-
-  <div  id = "image1"></div>
-    <h4 id = "name1"><b></b></h4>
-    <p id = "followers1"></p>
-  
-</div>
+    <div class="card">
+        <div id="image1"></div>
+        <h4 id="name1"><b></b></h4>
+        <p id="followers1"></p>
+    </div>
 </body>
 
-
-  <script>
-    
+<script>
     //Values that need to be pulled
-                let image;
-                let followers;
-                let name;
+    let image;
+    let followers;
+    let name;
 
-                let username = document.querySelector('#username');
+    let username = document.querySelector("#username");
 
-                const xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
-                document.querySelector('#Enter').addEventListener('click', function(){
+    document.querySelector("#Enter").addEventListener("click", function () {
+        const requestUrl = `https://api.github.com/users/${username.value}`;
 
-                    const requestUrl = `https://api.github.com/users/${username.value}`;
+        xhr.open("GET", requestUrl);
+        xhr.onreadystatechange = function () {
+            // is it not the same as () => {}  ??
 
-                    xhr.open('GET', requestUrl)
-                xhr.onreadystatechange = function() {      // is it not the same as () => {}  ?? 
-                   
-                    // for function(){}  // this. referts to xhr, whereas for () => {} // this. refers to window.
-                    // If you want to use () => {} // xhr.responseText
+            // for function(){}  // this. referts to xhr, whereas for () => {} // this. refers to window.
+            // If you want to use () => {} // xhr.responseText
 
-                    if(xhr.readyState === 4){
+            if (xhr.readyState === 4) {
+                console.log(xhr.readyState);
 
-                        console.log(xhr.readyState);
+                const data = JSON.parse(this.responseText);
+                console.log(typeof data);
+                console.log(data.followers);
 
-                        const data = JSON.parse(this.responseText);
-                        console.log(typeof data);
-                        console.log(data.followers);
-                        
-                       name = data.name;
-                       image = data.avatar_url;
-                       followers = data.followers;
-                        Information()
-                    }
-                    
-                }
-                xhr.send(); // Nothing will work without this line.
+                name = data.name;
+                image = data.avatar_url;
+                followers = data.followers;
+                Information();
+            }
+        };
+        xhr.send(); // Nothing will work without this line.
+    });
 
-            });
+    const nameElement = document.getElementById("name1");
+    const imageElement = document.getElementById("image1");
+    const followersElement = document.getElementById("followers1");
 
-                
+    function Information() {
+        nameElement.innerHTML = `Name = ${name}`;
+        imageElement.innerHTML = `<img src="${image}" alt="Cute Image" width="300">`;
+        // console.log(image);
+        followersElement.innerHTML = `followers = ${followers}`;
+    }
+</script>
 
-                
-                const nameElement = document.getElementById('name1');
-                const imageElement = document.getElementById('image1');
-                const followersElement = document.getElementById('followers1');
-
-
-                function Information(){
-                    
-                    nameElement.innerHTML =   `Name = ${name}`;
-                    imageElement.innerHTML = `<img src="${image}" alt="Cute Image" width="300">`;
-                    // console.log(image);
-                    followersElement.innerHTML =   `followers = ${followers}`;
-                    
-
-                }
-
-    </script>
 </html>
